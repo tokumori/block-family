@@ -52,6 +52,9 @@ table {
   }
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
+* {
+  box-sizing: border-box;
+}
 // Variables
 $darkColor: #222;
 $lightColor: #EEE;
@@ -97,7 +100,7 @@ h1, h2, h3, h4{
   @include tablet {
 
   }
-  @media (min-width: #{$largeWidth}) {
+  @include desktop {
 
   }
 }
@@ -129,6 +132,14 @@ h2{
 .block_family{
   max-width:350px;
   margin:auto;
+
+  @include tablet {
+    max-width: $mediumWidth;
+  }
+
+  @include desktop {
+    max-width: $largeWidth;
+  }
 }
 
 .block_family li{
@@ -138,9 +149,15 @@ h2{
 
   @include tablet {
     background-color: $lightColor;
+    float: left;
+    width: 48%;
+    margin: 1%;
   }
 
   @include desktop {
     background-color: $brightColor;
+    float: left;
+    width: 30%;
+    margin: 1%;
   }
 }
