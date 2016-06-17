@@ -148,16 +148,23 @@ h2{
   padding: $globalPadding;
 
   @include tablet {
-    background-color: $lightColor;
     float: left;
     width: 48%;
     margin: 1%;
+    &:nth-child(2n) {
+     background-color: $lightColor;
+    }
   }
 
   @include desktop {
-    background-color: $brightColor;
     float: left;
     width: 30%;
     margin: 1%;
+    &:nth-child(n) {
+      background-color: $brightColor;
+    }
+    &:nth-child(3n-1) {
+      background-color: $lightColor;
+    }
   }
 }
