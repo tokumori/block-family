@@ -1,38 +1,146 @@
 // Resets, Clearfix, etc
 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0;
+  }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
 // Variables
- 
-// Media Query Ranges 
- 
+$darkColor: #222;
+$lightColor: #EEE;
+$brightColor: orange;
+$globalPadding: 20px;
+// Media Query Ranges
+$mediumWidth: 600px;
+$largeWidth: 900px;
 // Mixins
+@mixin tablet() {
+  @media (min-width: #{$mediumWidth}) {
+    @content;
+  }
+}
 
+@mixin desktop() {
+  @media (min-width: #{$largeWidth}) {
+    @content;
+  }
+}
+
+@mixin block_font($fontSize: 35px, $fontColor: $darkColor) {
+  font-size: $fontSize;
+  color: $fontColor;
+}
 // Styles
 body{
-  background-color: orange;
+  background-color: $brightColor;
   text-align: center;
-  color: #EEE;
+  color: $lightColor;
+
+  @include tablet {
+
+  }
+
+  @include desktop {
+    background-color: $darkColor;
+  }
 }
- 
+
 h1, h2, h3, h4{
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  @include tablet {
+
+  }
+  @media (min-width: #{$largeWidth}) {
+
+  }
 }
- 
+
 h1{
-  padding: 20px;
+  padding: $globalPadding;
+  @include block_font(55px);
+
+  @include tablet {
+    @include block_font(55px, $lightColor);
+  }
+  @include desktop {
+    @include block_font(55px, $brightColor);
+  }
 }
- 
+
 h2{
- 
+  @include block_font($fontColor: $lightColor);
+
+  @include tablet {
+    @include block_font(35px, $brightColor);
+  }
+  @include desktop {
+    @include block_font(35px);
+  }
 }
- 
- 
+
+
 .block_family{
   max-width:350px;
   margin:auto;
 }
- 
+
 .block_family li{
-  background-color: #222;
+  background-color: $darkColor;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: $globalPadding;
+
+  @include tablet {
+    background-color: $lightColor;
+  }
+
+  @include desktop {
+    background-color: $brightColor;
+  }
 }
